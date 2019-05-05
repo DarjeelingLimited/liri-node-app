@@ -1,4 +1,5 @@
-console.log('this is loaded');
+// console.log('this is loaded');
+// I didn't want this to keep loading
 
 exports.spotify = {
   id: process.env.SPOTIFY_ID,
