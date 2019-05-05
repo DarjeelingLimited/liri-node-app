@@ -29,11 +29,6 @@ function bandsInTown(artist) {
           "\nDate of event: " + (moment(response.data[i].datetime).format("MM/DD/YYYY")) +
           "\n------------------------------------------------------------";
         console.log(concertData);
-        // // Append showConcertData and the divider to the log.txt, print showConcertData to the console
-        // fs.appendFile("log.txt", showConcertData + divider, function (err) {
-        //   if (err) throw err;
-        //   console.log(showConcertData);
-        // });
       }
     });
 }
@@ -82,8 +77,8 @@ function movieResults(term) {
 }
 
 //Create do-what-it-says
-function doWhat(){
-  fs.readFile('random.txt', "utf8", function(error, data) {
+function doWhat() {
+  fs.readFile('random.txt', "utf8", function (error, data) {
     var random = data.split(',');
     spotifyResults(random[1]);
   });
@@ -91,12 +86,14 @@ function doWhat(){
 //end of do-what-it-says
 
 switch (search) {
-  case (search === undefined):
-    console.log("Please enter one of the valid arguments: concert-this, spotify-this-song, movie-this, or do-what-it-says.")
+  case "start":
+    console.log("\n------------------------------------------------------------" + 
+    "\nPlease enter one of the valid arguments: concert-this, spotify-this-song, movie-this, or do-what-it-says. \nThen, enter the term that you're looking for. For example, by inputting 'node liri spotify-this-song 3 Libras', you get the artist and song information returned from the Spotify API." + 
+    "\n------------------------------------------------------------")
     break;
   case "concert-this":
     if (!term) {
-      console.log("Sorry, no results were found.");
+      console.log("Sorry, no results were found. You need to add a term.");
     }
     else {
       console.log("Your band: " + term);
@@ -126,3 +123,17 @@ switch (search) {
   case "do-what-it-says":
     doWhat();
 }
+
+//Print to log.txt file
+function logTxt() {
+  fs.appendFile("log.txt", search + "\n", function (err) {
+    if (err) {
+      console.log(err);
+    }
+    // Don't need it to log every time. 
+    // else {
+    //   console.log("Search added to log.txt file.")
+    // }
+  })
+};
+logTxt()
