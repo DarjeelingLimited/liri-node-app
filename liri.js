@@ -12,7 +12,7 @@ var spotify = new Spotify(keys.spotify);
 //Takes in all of the command line arguments to capture input (concert-this, spotify-this-song, movie-this, do-what-it-says)
 var search = process.argv[2];
 
-//Joining the remaining arguments (item 3 in the array and on) since an actor or tv show name may contain spaces
+//Joining the remaining arguments (item 3 in the array and on) since a movie or tv show name may contain spaces
 var input = process.argv.slice(3).join(" ");
 var term = input.toUpperCase();
 
@@ -121,6 +121,7 @@ switch (search) {
     }
     break;
   case "do-what-it-says":
+  console.log("Here's a blast from the past: ");
     doWhat();
 }
 
